@@ -5,7 +5,10 @@ xmlHttp.send(null);
 
 let czujniki = xmlHttp.responseText;
 
-var mymap = L.map('mapid').setView([49.780145, 22.786583], 13);
+let sw = L.latLng(49.69600468606782, 22.40746406532194);
+let ne = L.latLng(49.85719699165818, 23.00415811475734);
+let bounds = L.latLngBounds(sw, ne);
+var mymap = L.map('mapid',{maxBouns: bounds}).setView([49.780145, 22.786583], 13);
 
 // Podkład topograficzny
 
@@ -21,7 +24,7 @@ var mymap = L.map('mapid').setView([49.780145, 22.786583], 13);
 var CartoDB_DarkMatter = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
 	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
 	subdomains: 'abcd',
-	minZoom: 10,
+	minZoom: 11,
     maxZoom: 19
 }).addTo(mymap);
 
