@@ -1,4 +1,29 @@
-.cos{
-    background-color: black;
-    
+.powiadomienie{
+    background-color: rgb(255,255,255);
+    border: 2px solid white;
+    border-radius: 5px;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 200px;
+    height: 100px;
+}
+
+.zamkniecie{
+    position: absolute;
+    color: black;
+    transition: 0.1s;
+    top: 2px;
+}
+.zamkniecie:hover{
+    color: red;
+    transition: 0.2s;
+}
+
+.mapClass{
+    top: 0px;
+    left: 0px;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
 }

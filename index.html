@@ -4,7 +4,7 @@
     <title>Geoportal zespół 1</title>
     <meta charset="utf-8">
     <script type="text/javascript" src="http://api.luftdaten.info/static/v1/data.json"></script>
-    
+    <link href="style.css" rel="stylesheet">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
@@ -13,11 +13,12 @@
   
   </head>
   <body>
-	  <h3>Geoportal</h3> 
-	  <div class="powiadomienie">
+    <div id="mapid" class="mapClass"></div>
+    <div class="powiadomienie" id="oknoInformacyjne">
+      <h3>Geoportal</h3> 
       <p>Prezentowana treść ma charakter wyłącznie poglądowy. Nie może służyć do prprowadzenia i sporządzania dokumentacji technicznej oraz oficjalnych dokumentów.</p> 
+      <button class="zamkniecie" onclick="usunPowiadomienie()">X</button>
     </div>
-    <div id="mapid" style="width: 600px; height: 400px;"></div>
-  <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript" src="script.js"></script>
   </body>
 </html>
