@@ -46,6 +46,21 @@ function usunPowiadomienie(){
     document.getElementById("oknoInformacyjne").classList.remove('powiadomienie');
 };
 
+function openNav() {
+    document.getElementById("panelBoczny").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+    document.getElementById("panelBoczny").style.border = "4px solid white";
+};
+  
+function closeNav() {
+    document.getElementById("panelBoczny").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+    setTimeout(closeNavCont, 400)
+};
+
+function closeNavCont(){
+    document.getElementById("panelBoczny").style.border = "0px";
+}
 
 L.marker([49.780145, 22.786583]).addTo(mymap)
     .bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();

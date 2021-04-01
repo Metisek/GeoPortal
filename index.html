@@ -14,10 +14,21 @@
   </head>
   <body>
     <div id="mapid" class="mapClass"></div>
-    <div class="powiadomienie" id="oknoInformacyjne">
-      <h3><b>Geoportal grupy 1</b></h3> 
-      <p><b>Prezentowana treść ma charakter wyłącznie poglądowy.</b> Nie może służyć do prowadzenia i sporządzania dokumentacji technicznej oraz oficjalnych dokumentów.</p> 
-      <button class="zamkniecie" onclick="usunPowiadomienie()">X</button>
+      <div id="main" class="panelboczny">
+        <span style="color:white;font-size:30px;cursor:pointer;right:2px" onclick="openNav()">&#9776;</span>
+        <div align="right" class="powiadomienie" id="oknoInformacyjne">
+          <h3><b>Geoportal grupy 1</b></h3> 
+          <p><b>Prezentowana treść ma charakter wyłącznie poglądowy.</b> Nie może służyć do prowadzenia i sporządzania dokumentacji technicznej oraz oficjalnych dokumentów.</p> 
+          <button class="zamkniecie" onclick="usunPowiadomienie()">X</button>
+        </div>
+      </div>
+    </div>
+    <div id="panelBoczny" class="pBoczny">
+      <a href="javascript:void(0)" class="closePBoczny" onclick="closeNav()">&times;</a>
+      <a href="#">Szukaj</a>
+      <a href="#">Filtry</a>
+      <a href="#">Wybór mapy</a>
+      <a href="#">Tryb ciemny</a>
     </div>
     <script type="text/javascript" src="script.js"></script>
   </body>
