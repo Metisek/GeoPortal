@@ -41,6 +41,11 @@ var myIcon = L.icon({
     popupAnchor: [0, -32],
 });
 
+function usunPowiadomienie(){
+    document.getElementById('oknoInformacyjne').innerHTML="";
+    document.getElementById("oknoInformacyjne").classList.remove('powiadomienie');
+};
+
 
 L.marker([49.780145, 22.786583]).addTo(mymap)
     .bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();
