@@ -1,6 +1,6 @@
 var luftdafen = 'http://api.luftdaten.info/static/v1/data.json';
 var xmlHttp = new XMLHttpRequest();
-xmlHttp.open( "GET", luftdafen, false ); // false for synchronous request
+xmlHttp.open( "GET", luftdafen, false );
 xmlHttp.send(null);
 
 let czujniki = xmlHttp.responseText;
@@ -12,7 +12,7 @@ let bounds = L.latLngBounds(sw, ne);
 var mymap = L.map('mapid',{
     maxBounds: bounds,
     minZoom: 11,
-    maxZoom: 19
+    maxZoom: 18
 }).setView([49.780145, 22.786583], 13);
 
 // Podkład topograficzny
@@ -47,20 +47,31 @@ function usunPowiadomienie(){
 };
 
 function openNav() {
-    document.getElementById("panelBoczny").style.width = "250px";
-    document.getElementById("main").style.marginLeft = "250px";
+    document.getElementById("panelBoczny").style.width = "280px";
+    document.getElementById("main").style.marginLeft = "280px";
     document.getElementById("panelBoczny").style.border = "4px solid white";
 };
   
 function closeNav() {
     document.getElementById("panelBoczny").style.width = "0";
     document.getElementById("main").style.marginLeft= "0";
-    setTimeout(closeNavCont, 400)
+    setTimeout(closeNavCont, 250)
 };
 
 function closeNavCont(){
     document.getElementById("panelBoczny").style.border = "0px";
 }
+
+function checkChild(identity){
+    if (document.getElementById(identity).style.height == ""){
+        document.getElementById(identity).style.height = "auto";
+    }
+    else{
+        document.getElementById(identity).style.height = ""; 
+    };
+};
+
+// Część nieistotna, jest to skopiowany kod z innych zajęć, można usunąć/zmienić
 
 L.marker([49.780145, 22.786583]).addTo(mymap)
     .bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();

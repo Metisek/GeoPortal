@@ -8,7 +8,7 @@ div.panelboczny{
 }
 
 div.powiadomienie{
-    background-color: #FFFFFFcc;
+    background-color: #FFFFFFdd;
     border: 3px solid white;
     border-radius: 2px;
     padding: 10px;
@@ -20,6 +20,7 @@ div.powiadomienie{
     text-align: justify;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
 }
+
 .zamkniecie{
     position: absolute;
     color: black;
@@ -47,21 +48,61 @@ div.powiadomienie{
     right: 10px;
     background-color: #fffd;
     overflow-x: hidden;
-    transition: 0.5s;
+    transition: 0.3s;
     padding-top: 40px;
+    border-radius: 10px;
 }
 
-.pBoczny a {
+#szukaj, #filtry, #mapy, #trybCiemny{
+    height: 0;
+    position: relative;
+    z-index: 6;
+    left: 10px;
+    overflow-y: hidden;
+}
+
+#szukaj input{
+    margin-left: 40px;
+}
+
+#TempInput, #PM25Input, #PM10Input, #HumidInput, #PressureInput{
+    height: 0;
+    position: relative;
+    width: 200px;
+    z-index: 6;
+    left: 10px;
+    overflow-y: hidden;
+}
+
+#filtry input{
+    width: 40px;
+}
+
+.pBoczny a, .pBoczny p{
     padding: 8px 8px 8px 32px;
     text-decoration: none;
-    font-size: 25px;
+    font-size: 20px;
     color: #818181;
     display: block;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: 0.3s;
+}
+
+.pBoczny p{
+    color: #616161;
+    padding: 0px 0px 0px 32px;
+    font-size: 14px;
+}
+
+.pBoczny a.podmenu{
+    text-decoration: none;
+    font-size: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     transition: 0.3s;
 }
   
 .pBoczny a:hover {
-    color: #f1f1f1;
+    color: #414141;
 }
   
 .pBoczny .closePBoczny {
@@ -75,13 +116,10 @@ div.powiadomienie{
 
 #main {
     transition: margin-right .5s;
-    padding: 16px;
+    padding: 15px;
 }
 
-@media screen and (max-height: 450px) {
-    .pBoczny {padding-top: 15px;}
-    .pBoczny a {font-size: 18px;}
-}  
+
 .mapClass{
     top: 0px;
     left: 0px;
@@ -90,3 +128,10 @@ div.powiadomienie{
     height: 100vh;
     z-index: 1;
 }
+
+
+@media screen and (max-height: 450px) {
+    .pBoczny {padding-top: 15px;}
+    .pBoczny a {font-size: 18px;}
+    .pBoczny a .podmenu{font-size: 12px;}
+}  

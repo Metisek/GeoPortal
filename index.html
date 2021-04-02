@@ -14,21 +14,56 @@
   </head>
   <body>
     <div id="mapid" class="mapClass"></div>
-      <div id="main" class="panelboczny">
-        <span style="color:white;font-size:30px;cursor:pointer;right:2px" onclick="openNav()">&#9776;</span>
-        <div align="right" class="powiadomienie" id="oknoInformacyjne">
-          <h3><b>Geoportal grupy 1</b></h3> 
-          <p><b>Prezentowana treść ma charakter wyłącznie poglądowy.</b> Nie może służyć do prowadzenia i sporządzania dokumentacji technicznej oraz oficjalnych dokumentów.</p> 
-          <button class="zamkniecie" onclick="usunPowiadomienie()">X</button>
-        </div>
+    <div id="main" class="panelboczny">
+      <span style="color:white;font-size:30px;cursor:pointer;right:2px" onclick="openNav()">&#9776;</span>
+      <div align="right" class="powiadomienie" id="oknoInformacyjne">
+        <h3><b>Geoportal grupy 1</b></h3> 
+        <p><b>Prezentowana treść ma charakter wyłącznie poglądowy.</b> Nie może służyć do prowadzenia i sporządzania dokumentacji technicznej oraz oficjalnych dokumentów.</p> 
+        <button class="zamkniecie" onclick="usunPowiadomienie()">X</button>
       </div>
     </div>
     <div id="panelBoczny" class="pBoczny">
       <a href="javascript:void(0)" class="closePBoczny" onclick="closeNav()">&times;</a>
-      <a href="#">Szukaj</a>
-      <a href="#">Filtry</a>
-      <a href="#">Wybór mapy</a>
-      <a href="#">Tryb ciemny</a>
+      <a href="javascript:void(0)" onclick='checkChild("szukaj")'>Szukaj</a>
+      <div id="szukaj">
+        <input class="searchbar" type="text">
+      </div>
+      <a href="javascript:void(0)" onclick='checkChild("filtry")'>Filtry</a>
+      <div id="filtry">
+        <a href="javascript:void(0)" onclick='checkChild("TempInput")' class="podmenu">Zakres temperatur</a>
+        <div id="TempInput">
+          <p>Od: <input type="number" id="tempLow"> Do: <input type="number" id="tempHigh"></p>
+        </div>
+        <a href="javascript:void(0)" onclick='checkChild("PM25Input")' class="podmenu">Zakres pyłków PM 2,5</a>
+        <div id="PM25Input">
+          <p>Od: <input type="number" id="PM25Low"> Do: <input type="number" id="PM25High"></p>
+        </div>
+        <a href="javascript:void(0)" onclick='checkChild("PM10Input")' class="podmenu">Zakres pyłków PM 10</a>
+        <div id="PM10Input">
+          <p>Od: <input type="number" id="PM10Low"> Do: <input type="number" id="PM10High"></p>
+        </div>
+        <a href="javascript:void(0)" onclick='checkChild("HumidInput")' class="podmenu">Zakres wilgotności powietrza</a>
+        <div id="HumidInput">
+          <p>Od: <input type="number" id="HumidLow"> Do: <input type="number" id="HumidHigh"></p>
+        </div>
+        <a href="javascript:void(0)" onclick='checkChild("PressureInput")' class="podmenu">Zakres ciśnienia powietrza</a>
+        <div id="PressureInput">
+          <p>Od: <input type="number" id="PressureLow"> Do: <input type="number" id="PressureHigh"></p>
+        </div>
+      </div>
+      <a href="javascript:void(0)" onclick='checkChild("mapy")'>Wybór mapy</a>
+      <div id="mapy">
+        <a href="javascript:void(0)" onclick='mapChange("PM25")' class="podmenu">Smog: PM2,5</a>
+        <a href="javascript:void(0)" onclick='mapChange("PM10")' class="podmenu">Smog: PM10</a>
+        <a href="javascript:void(0)" onclick='mapChange("Temp")' class="podmenu">Temperatura</a>
+        <a href="javascript:void(0)" onclick='mapChange("Humid")' class="podmenu">Wilgotność</a>
+        <a href="javascript:void(0)" onclick='mapChange("Pressure")' class="podmenu">Ciśnienie</a>
+      </div>
+      <a href="javascript:void(0)" onclick='checkChild("trybCiemny")'>Tryb ciemny</a>
+      <div id="trybCiemny">
+        <a href="javascript:void(0)" onclick='darkMode(0)' class="podmenu">Wyłącz</a>
+        <a href="javascript:void(0)" onclick='darkMode(1)' class="podmenu">Włącz</a>  
+      </div>
     </div>
     <script type="text/javascript" src="script.js"></script>
   </body>
