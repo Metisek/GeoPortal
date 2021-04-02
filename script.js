@@ -1,21 +1,24 @@
+// Ta sekcja odczytuje dane JSON z luftdafen, a następnie przypisuje je do zmiennej "czujniki"
+
 var luftdafen = 'http://api.luftdaten.info/static/v1/data.json';
 var xmlHttp = new XMLHttpRequest();
 xmlHttp.open( "GET", luftdafen, false );
 xmlHttp.send(null);
-
 let czujniki = xmlHttp.responseText;
 
+// Sekcja określa granice mapy
 let sw = L.latLng(49.69600468606782, 22.40746406532194);
 let ne = L.latLng(49.85719699165818, 23.00415811475734);
 let bounds = L.latLngBounds(sw, ne);
 
+// Sekcja tworzy 
 var mymap = L.map('mapid',{
     maxBounds: bounds,
     minZoom: 11,
     maxZoom: 18
 }).setView([49.780145, 22.786583], 13);
 
-// Podkład topograficzny
+// Podkład topograficzny, pozostałość skopiowanej funkcji z moich notatek, może się przydać do trybu jasnego
 
 // L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
 //     maxZoom: 18,
@@ -26,13 +29,16 @@ var mymap = L.map('mapid',{
 //     zoomOffset: -1
 // }).addTo(mymap);
 
+// Ciemny podkład topograficzny
+
 var CartoDB_DarkMatter = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
 	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
 	subdomains: 'abcd',
 
 }).addTo(mymap);
 
-// Koniec podkładu
+// Tutaj funkcja się kończy, pozostałe dane to dane śmieciowe, przykłady z notatek z zajęć. Zostawiam bo może się przydać
+// Najważniejsze będzie odpowiednie odczytanie JSON'ów oraz przypisanie ich do mapy
 
 var myIcon = L.icon({
     iconUrl: 'tower.png',

@@ -1,3 +1,5 @@
+/* Część związana z menu hamburgerowym oraz powiadomieniem */
+
 div.panelboczny{
     position: absolute;
     top: 0px;
@@ -6,6 +8,15 @@ div.panelboczny{
     z-index: 9;
     text-align: right;
 }
+
+/* ID kontenera do powiadomienia oraz menu burgerowego  */
+
+#main {
+    transition: margin-right .5s;
+    padding: 15px;
+}
+
+/* Formatowanie kontenera powiadomienia */
 
 div.powiadomienie{
     background-color: #FFFFFFdd;
@@ -21,6 +32,8 @@ div.powiadomienie{
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
 }
 
+/* Formatowanie tekstu do przycisku w powiadomieniu */
+
 .zamkniecie{
     position: absolute;
     color: black;
@@ -32,12 +45,21 @@ div.powiadomienie{
     background-color: #00000000;
     font-size: 20px;
 }
+
+/* Zmiana koloru guzika zamknięcia po najechaniu, nienatychmiastowe */
+
 .zamkniecie:hover{
     color: red;
     transition: 0.2s;
     cursor: pointer;
     border: 0px;
 }
+
+/* !!!
+    Ta sekcja formatuje panel boczny z funkcjami strony
+!!! */
+
+/* Główne okno, określenie pozycji oraz zależnej wielkości, zawiera treść z animacją okna po zmianie właściwości funkcji */
 
 .pBoczny {
     height: calc(100% - 150px);
@@ -53,6 +75,8 @@ div.powiadomienie{
     border-radius: 10px;
 }
 
+/* Formatowanie tekstu głównych kategorii panelu, po ich kliknięciu pojawia się kontener z ich "dzieckiem" */
+
 #szukaj, #filtry, #mapy, #trybCiemny{
     height: 0;
     position: relative;
@@ -61,9 +85,13 @@ div.powiadomienie{
     overflow-y: hidden;
 }
 
+/* Dodatkowe formatowanie paska wyszukiwania */
+
 #szukaj input{
     margin-left: 40px;
 }
+
+/* Formatowanie dzieci kontenera "Filtry", po ich kliknięciu pojawia się zakres który można ręcznie wpisać */
 
 #TempInput, #PM25Input, #PM10Input, #HumidInput, #PressureInput{
     height: 0;
@@ -74,9 +102,13 @@ div.powiadomienie{
     overflow-y: hidden;
 }
 
+/* Formatowanie okienek do wpisania wartości do przefiltrowania */
+
 #filtry input{
     width: 40px;
 }
+
+/* Formatowanie tekstów w panelu bocznym */
 
 .pBoczny a, .pBoczny p{
     padding: 8px 8px 8px 32px;
@@ -88,11 +120,15 @@ div.powiadomienie{
     transition: 0.3s;
 }
 
+/* Dodatkowe formatowanie akapitó dla dzieci dzieci kontenera filtr */
+
 .pBoczny p{
     color: #616161;
     padding: 0px 0px 0px 32px;
     font-size: 14px;
 }
+
+/* Formatowanie każdego podmenu (dziecka) każdego menu głównego */
 
 .pBoczny a.podmenu{
     text-decoration: none;
@@ -100,11 +136,15 @@ div.powiadomienie{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     transition: 0.3s;
 }
-  
+
+/* Zmiana koloru po najechaniu na tekst */
+
 .pBoczny a:hover {
     color: #414141;
 }
-  
+
+/* Formatowanie "X" do zamknięcia panelu bocznego */
+
 .pBoczny .closePBoczny {
     position: absolute;
     top: 0;
@@ -114,11 +154,19 @@ div.powiadomienie{
     transition: 0.2s
 }
 
-#main {
-    transition: margin-right .5s;
-    padding: 15px;
-}
+/* FORMATOWANIE ROZMIARU TEKSTU W ZALEŻNOŚCI OD WIELKOŚCI OKIENKA, przydatne dla konfiguracji urządzeń mobilnych. */
+@media screen and (max-height: 450px) {
+    .pBoczny {padding-top: 15px;}
+    .pBoczny a {font-size: 18px;}
+    .pBoczny a .podmenu{font-size: 12px;}
+}  
 
+/* !!!
+    Koniec formatowania panelu nocznego
+!!! */
+
+
+/* Formatowanie mapy tak, by zajmowałą całe okno */
 
 .mapClass{
     top: 0px;
@@ -130,8 +178,3 @@ div.powiadomienie{
 }
 
 
-@media screen and (max-height: 450px) {
-    .pBoczny {padding-top: 15px;}
-    .pBoczny a {font-size: 18px;}
-    .pBoczny a .podmenu{font-size: 12px;}
-}  
