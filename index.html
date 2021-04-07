@@ -82,9 +82,7 @@
 
       </div>
 
-      <!-- Tutaj zmieniają się markery w zależności od wybranej mapy. Nie utworzyłej jeszcze w JS'ie fukcji "mapChange('wartość')". 
-      W zależności od wartości usuwa obecne znaczniki, MOŻE wyświetlać kółko ładowania, a następnie wyświetla znaczniki zaaktualizowane.
-      Wybranie mapy obecnie aktywnej nic by nie robiło. -->
+      <!-- Tutaj zmieniają się markery w zależności od wybranej mapy -->
 
       <a href="javascript:void(0)" onclick='checkChild("mapy")'>Wybór mapy</a>
 
@@ -96,7 +94,7 @@
         <a href="javascript:void(0)" onclick='mapChange("pressure")' class="podmenu">Ciśnienie</a>
       </div>
 
-      <!-- Ostatni wpis w panelu bocznym, również tu brakuje implementacji JS, tutaj w zależności od wybranej opcji aktualizuje się TYLKO kolor mapy. -->
+      <!-- Ostatni wpis w panelu bocznym, tryb ciemny -->
       <a href="javascript:void(0)" onclick='checkChild("trybCiemny")'>Tryb ciemny</a>
 
       <div id="trybCiemny">
@@ -111,11 +109,6 @@
         <!-- Zawartość legendy (podstawowo schowana) -->
         <div id="myLinks"> 
             <table id="legendTable">
-              <tr><td id="legendColor1"></td><td>&#60;50%</td></tr>
-              <tr><td id="legendColor2"></td><td>&#60;100%</td></tr>
-              <tr><td id="legendColor3"></td><td>&#60;175%</td></tr>
-              <tr><td id="legendColor4"></td><td>&#60;300%</td></tr>
-              <tr><td id="legendColor5"></td><td>&#62;300%</td></tr>
             </table>
         </div>
         <!-- Ikonka -->

@@ -172,13 +172,13 @@ function drawmarker(czuj, mapa){
                                     colorSet = '#ccccff'
                                 }
                                 else if (temp < 10){
-                                    colorSet = '#ccff99'
+                                    colorSet = '#cfff77'
                                 }
                                 else if(temp < 20){
                                     colorSet = '#66ff33'
                                 }
                                 else if(temp < 30){
-                                    colorSet = '#ccff33'
+                                    colorSet = '#ccf022'
                                 }
                                 else if(temp < 40){
                                     colorSet = '#ffcc00'
@@ -311,13 +311,13 @@ function drawmarker(czuj, mapa){
                                     colorSet = '#ccccff'
                                 }
                                 else if (temp < 10){
-                                    colorSet = '#ccff99'
+                                    colorSet = '#cfff77'
                                 }
                                 else if(temp < 20){
                                     colorSet = '#66ff33'
                                 }
                                 else if(temp < 30){
-                                    colorSet = '#ccff33'
+                                    colorSet = '#ccf022'
                                 }
                                 else if(temp < 40){
                                     colorSet = '#ffcc00'
@@ -429,14 +429,75 @@ function legendShow() {
 function legendChange(mapa){
     switch(mapa){
         case "P1":
+
+            document.getElementById('legendTable').innerHTML = '<tr><td id="legendColor1"></td><td>&#60;50%</td></tr>\
+            <tr><td id="legendColor2"></td><td>&#60;100%</td></tr>\
+            <tr><td id="legendColor3"></td><td>&#60;175%</td></tr>\
+            <tr><td id="legendColor4"></td><td>&#60;300%</td></tr>\
+            <tr><td id="legendColor5"></td><td>&#62;300%</td></tr>'
+
+            document.getElementById("legendColor1").style.backgroundColor = '#00ff00';
+            document.getElementById("legendColor2").style.backgroundColor = '#99ff33';
+            document.getElementById("legendColor3").style.backgroundColor = '#ffff00';
+            document.getElementById("legendColor4").style.backgroundColor = '#ff6600';
+            document.getElementById("legendColor5").style.backgroundColor = '#ff0000';
             break;
+
         case "P2":
+
+            document.getElementById('legendTable').innerHTML = '<tr><td id="legendColor1"></td><td>&#60;50%</td></tr>\
+            <tr><td id="legendColor2"></td><td>&#60;100%</td></tr>\
+            <tr><td id="legendColor3"></td><td>&#60;175%</td></tr>\
+            <tr><td id="legendColor4"></td><td>&#60;300%</td></tr>\
+            <tr><td id="legendColor5"></td><td>&#62;300%</td></tr>'
+
+            document.getElementById("legendColor1").style.backgroundColor = '#00ff00';
+            document.getElementById("legendColor2").style.backgroundColor = '#99ff33';
+            document.getElementById("legendColor3").style.backgroundColor = '#ffff00';
+            document.getElementById("legendColor4").style.backgroundColor = '#ff6600';
+            document.getElementById("legendColor5").style.backgroundColor = '#ff0000';
             break;
+
         case "temperature":
+
+            document.getElementById('legendTable').innerHTML = '<tr><td id="legendColor1"></td><td>&#60; -20&#176;C</td></tr>\
+            <tr><td id="legendColor2"></td><td>&#60; -10&#176;C</td></tr>\
+            <tr><td id="legendColor3"></td><td>&#60; 0&#176;C</td></tr>\
+            <tr><td id="legendColor4"></td><td>&#60; 10&#176;C</td></tr>\
+            <tr><td id="legendColor5"></td><td>&#60; 20&#176;C</td></tr>\
+            <tr><td id="legendColor6"></td><td>&#60; 30&#176;C</td></tr>\
+            <tr><td id="legendColor7"></td><td>&#60; 40&#176;C</td></tr>\
+            <tr><td id="legendColor8"></td><td>&#62; 40&#176;C</td></tr>'
+
+            document.getElementById("legendColor1").style.backgroundColor = '#00cccc';
+            document.getElementById("legendColor2").style.backgroundColor = '#3366ff';
+            document.getElementById("legendColor3").style.backgroundColor = '#ccccff';
+            document.getElementById("legendColor4").style.backgroundColor = '#cfff77';
+            document.getElementById("legendColor5").style.backgroundColor = '#66ff33';
+            document.getElementById("legendColor6").style.backgroundColor = '#ccf022';
+            document.getElementById("legendColor7").style.backgroundColor = '#ffcc00';
+            document.getElementById("legendColor8").style.backgroundColor = '#ff9900';
             break;
+
         case "humidity":
+
+            document.getElementById('legendTable').innerHTML = '<tr><td id="legendColor1"></td><td>&#60;20%</td></tr>\
+            <tr><td id="legendColor2"></td><td>&#60;35%</td></tr>\
+            <tr><td id="legendColor3"></td><td>&#60;50%</td></tr>\
+            <tr><td id="legendColor4"></td><td>&#60;70%</td></tr>\
+            <tr><td id="legendColor5"></td><td>&#60;85%</td></tr>\
+            <tr><td id="legendColor6"></td><td>&#62;85%</td></tr>'
+
+            document.getElementById("legendColor1").style.backgroundColor = '#ffffcc';
+            document.getElementById("legendColor2").style.backgroundColor = '#ccccff';
+            document.getElementById("legendColor3").style.backgroundColor = '#6699ff';
+            document.getElementById("legendColor4").style.backgroundColor = '#0066ff';
+            document.getElementById("legendColor5").style.backgroundColor = '#0033cc';
+            document.getElementById("legendColor6").style.backgroundColor = '#000099';
             break;
+
         case "pressure":
+
             document.getElementById('legendTable').innerHTML = '<tr><td id="legendColor1"></td><td>&#60;970hPa</td></tr>\
             <tr><td id="legendColor2"></td><td>&#60;980hPa</td></tr>\
             <tr><td id="legendColor3"></td><td>&#60;995hPa</td></tr>\
@@ -453,8 +514,10 @@ function legendChange(mapa){
             document.getElementById("legendColor6").style.backgroundColor = '#ff5050';
             document.getElementById("legendColor7").style.backgroundColor = '#ff0000';
             break;
-    }
-}
+    };
+};
+
+legendChange('P1')
 
 // myRequest.onload = function(){
 //     let earthquakes = JSON.parse(myRequest.responseText);
