@@ -145,10 +145,11 @@ function drawmarker(czuj){
                 };
             };
         }
-        var punkt = ""
+        var punkt = "<p class='marker'>"
         for (var k = 0; k < wyswietl.length; k++){
             punkt = punkt +" "+ wyswietl[k] + "<br>"
         }
+        punkt = punkt + "</p>"
         L.marker([latitude, longitude])
         .bindPopup(punkt)
         .addTo(mymap);  

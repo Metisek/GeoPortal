@@ -184,4 +184,7 @@ div.powiadomienie{
     z-index: 1;
 }
 
-
+.marker{
+    font-size: 14px;
+    font-family: 'Courier New', Courier, monospace;
+}
