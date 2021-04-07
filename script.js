@@ -5,7 +5,6 @@ var xmlHttp = new XMLHttpRequest();
 xmlHttp.open( "GET", luftdafen, false );
 xmlHttp.send(null);
 let czujniki = JSON.parse(xmlHttp.responseText);
-console.log(czujniki)
 
 // Sekcja określa granice mapy
 let sw = L.latLng(49.69600468606782, 22.40746406532194);
@@ -116,29 +115,28 @@ L.geoJSON(podkarpacie, {
 //
 
 function drawmarker(czuj){
-    for (var i = 0; i < 5; i++){
-        console.log(czujniki[i])
-        // var longitude = czuj[i]['location']['longitude'];
-        // var latitude =  czuj[i]['location']['latitude'];
-        // L.marker([latitude, longitude])
-        // .bindPopup('hello')
-        // .addTo(map);  
+    for (var i = 0; i < czuj.length; i++){
+        var longitude = czuj[i]['location']['longitude'];
+        var latitude =  czuj[i]['location']['latitude']
+        L.marker([latitude, longitude])
+        .bindPopup('hello')
+        .addTo(mymap);  
     }   
   
 };
 
 drawmarker(czujniki)
 
-myRequest.onload = function(){
-    let earthquakes = JSON.parse(myRequest.responseText);
-    window.earthquakes = L.geoJSON(earthquakes, {
-        onEachFeature: function(feature, layer){
-            layer.bindPopup('<p><b>Earthquake location: </b>'+ feature.properties.place +
-            '</p><p><b> Magnitude: </b>' + feature.properties.mag+'</p>')
-        }
-    }).addTo(mymap) 
-}
-myRequest.send()
+// myRequest.onload = function(){
+//     let earthquakes = JSON.parse(myRequest.responseText);
+//     window.earthquakes = L.geoJSON(earthquakes, {
+//         onEachFeature: function(feature, layer){
+//             layer.bindPopup('<p><b>Earthquake location: </b>'+ feature.properties.place +
+//             '</p><p><b> Magnitude: </b>' + feature.properties.mag+'</p>')
+//         }
+//     }).addTo(mymap) 
+// }
+// myRequest.send()
 
 
 // Część nieistotna, jest to skopiowany kod z innych zajęć, można usunąć/zmienić
