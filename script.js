@@ -1,6 +1,6 @@
 // Ta sekcja odczytuje dane JSON z luftdafen, a następnie przypisuje je do zmiennej "czujniki"
 
-var luftdafen = 'https://api.luftdaten.info/static/v1/data.json';
+var luftdafen = 'https://data.sensor.community/airrohr/v1/filter/country=PL';
 var xmlHttp = new XMLHttpRequest();
 xmlHttp.open( "GET", luftdafen, false );
 xmlHttp.send(null);
