@@ -31,12 +31,6 @@ var mymap = L.map('mapid',{
 
 // Ciemny podkład topograficzny
 
-var CartoDB_DarkMatter = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-	subdomains: 'abcd',
-
-}).addTo(mymap);
-
 // Tutaj funkcja się kończy, pozostałe dane to dane śmieciowe, przykłady z notatek z zajęć. Zostawiam bo może się przydać
 // Najważniejsze będzie odpowiednie odczytanie JSON'ów oraz przypisanie ich do mapy
 
@@ -76,6 +70,28 @@ function checkChild(identity){
         document.getElementById(identity).style.height = ""; 
     };
 };
+
+
+// Zmiana układu topograficznego
+
+function darkMode(value){
+    if(value == 0){
+        var stylTopograficzny = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+	    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+	    subdomains: 'abcd',
+        }).addTo(mymap);
+        document.getElementById("menuHam").style.color = '';
+    }
+    else{
+        var stylTopograficzny = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            subdomains: 'abcd',
+        }).addTo(mymap);
+        document.getElementById("menuHam").style.color = '#000000'
+    };
+};
+
+darkMode(0)
 
 // Część nieistotna, jest to skopiowany kod z innych zajęć, można usunąć/zmienić
 
