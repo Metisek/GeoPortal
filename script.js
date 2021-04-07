@@ -413,6 +413,47 @@ drawmarker(czujniki, "P1")
 function mapChange(mapIde){
     window.grupaX.remove()
     drawmarker(czujniki, mapIde)
+    legendChange(mapIde)
+}
+
+function legendShow() {
+    var x = document.getElementById("myLinks");
+    console.log(x.style.height)
+    if (x.style.height == "") {
+      x.style.height = "200px";
+    } else {
+      x.style.height = "";
+    };
+  };
+
+function legendChange(mapa){
+    switch(mapa){
+        case "P1":
+            break;
+        case "P2":
+            break;
+        case "temperature":
+            break;
+        case "humidity":
+            break;
+        case "pressure":
+            document.getElementById('legendTable').innerHTML = '<tr><td id="legendColor1"></td><td>&#60;970hPa</td></tr>\
+            <tr><td id="legendColor2"></td><td>&#60;980hPa</td></tr>\
+            <tr><td id="legendColor3"></td><td>&#60;995hPa</td></tr>\
+            <tr><td id="legendColor4"></td><td>&#60;1005hPa</td></tr>\
+            <tr><td id="legendColor5"></td><td>&#60;1015hPa</td></tr>\
+            <tr><td id="legendColor6"></td><td>&#60;1025hPa</td></tr>\
+            <tr><td id="legendColor7"></td><td>&#62;1025hPa</td></tr>'
+
+            document.getElementById("legendColor1").style.backgroundColor = '#0000ff';
+            document.getElementById("legendColor2").style.backgroundColor = '#0066ff';
+            document.getElementById("legendColor3").style.backgroundColor = '#66ccff';
+            document.getElementById("legendColor4").style.backgroundColor = '#ffffff';
+            document.getElementById("legendColor5").style.backgroundColor = '#ff9999';
+            document.getElementById("legendColor6").style.backgroundColor = '#ff5050';
+            document.getElementById("legendColor7").style.backgroundColor = '#ff0000';
+            break;
+    }
 }
 
 // myRequest.onload = function(){
