@@ -391,17 +391,17 @@ function drawmarker(czuj, mapa){
             punkt = punkt +" "+ wyswietl[k] + "<br>"
         }
         punkt = punkt + "</p>"
-
-        circle = L.circle([latitude, longitude], 80,{
+        
+        circle = L.circle([latitude, longitude], 120,{
             color: colorSet,
             fillColor: colorSet,
             fillOpacity: 0.1,
         }).bindPopup(punkt)
         .on('mousemove', function(e){
-            e.target.setRadius(120)
+            e.target.setRadius(1500*(2/mymap.getZoom()))
         })
         .on('mouseout', function(e){
-            e.target.setRadius(80)
+            e.target.setRadius(120)
         });
         grupaX.addLayer(circle)
     }
