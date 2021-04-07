@@ -18,28 +18,6 @@ var mymap = L.map('mapid',{
     maxZoom: 18
 }).setView([49.780145, 22.786583], 13);
 
-// Podkład topograficzny, pozostałość skopiowanej funkcji z moich notatek, może się przydać do trybu jasnego
-
-// L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-//     maxZoom: 18,
-//     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
-//         'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-//     id: 'mapbox/streets-v11',
-//     tileSize: 512,
-//     zoomOffset: -1
-// }).addTo(mymap);
-
-// Ciemny podkład topograficzny
-
-// Tutaj funkcja się kończy, pozostałe dane to dane śmieciowe, przykłady z notatek z zajęć. Zostawiam bo może się przydać
-// Najważniejsze będzie odpowiednie odczytanie JSON'ów oraz przypisanie ich do mapy
-
-var myIcon = L.icon({
-    iconUrl: 'tower.png',
-    iconSize: [32, 32],
-    iconAnchor: [16, 32],
-    popupAnchor: [0, -32],
-});
 
 function usunPowiadomienie(){
     document.getElementById('oknoInformacyjne').innerHTML="";
@@ -79,7 +57,9 @@ function darkMode(value){
 	    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
 	    subdomains: 'abcd',
         }).addTo(mymap);
+
         document.getElementById("menuHam").style.color = '';
+        
     }
     else{
         var stylTopograficzny = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
@@ -92,10 +72,11 @@ function darkMode(value){
 
 darkMode(0)
 
+
 L.geoJSON(przemysl, {
     style: function(feature) {
         return {color: '#00000000',
-        fillColor: '#ffffcc',
+        fillColor: '#ff66cc',
         fillOpacity: 0.1};
     }
 }).addTo(mymap);
@@ -103,8 +84,8 @@ L.geoJSON(przemysl, {
 L.geoJSON(podkarpacie, {
     style: function(feature) {
         return {color: '#ff9955',
-        fillColor: '#ff00cc',
-        fillOpacity: 0.01};
+        fillColor: '#cc00cc',
+        fillOpacity: 0.02};
     }
 }).addTo(mymap);
 
@@ -114,50 +95,251 @@ L.geoJSON(podkarpacie, {
 
 //
 
-function drawmarker(czuj){
-    let wyswietl = []
-    var longhis = ''
-    var lathis = ''
-    let dictDane = {'P1':'Smog PM10: ','P2':'Smog PM2,5: ','temperature':'Temperatura: ','humidity':'Wilogtość: ','pressure':'Ciśnienie: '};
+
+function drawmarker(czuj, mapa){
+
+    let temp = "";
+    window.grupaX = L.layerGroup();
+    let wyswietl = [];
+    var longhis = '';
+    var lathis = '';
+    let dictDane = {'P1':'Smog PM10: ','P2':'Smog PM2.5: ','temperature':'Temperatura: ','humidity':'Wilogtość: ','pressure':'Ciśnienie: '};
     for (var i = 0; i < czuj.length; i++){
         var longitude = czuj[i]['location']['longitude'];
         var latitude =  czuj[i]['location']['latitude'];
-
+        let dane = czuj[i]['sensordatavalues'];
         if (latitude == lathis && longitude == longhis){
-            let dane = czuj[i]['sensordatavalues']
+            colorSet = '#00000000'
             for (var j = 0; j < dane.length; j++){
                 if (dane[j]['value_type'] in dictDane){
                     var key = dane[j]['value_type'];
-                    wyswietl.push(dictDane[key] + dane[j]['value'])
+                    switch(key)
+                    {
+                        case 'P1':
+                            temp = Math.round((dane[j]['value']/50)*100)
+                            wyswietl.push("&#8759; "+ dictDane[key] + temp + '% normy');
+                            if (mapa == "P1"){
+                                if (temp < 50) {
+                                    colorSet = '#00ff00'
+                                }
+                                else if(temp < 100){
+                                    colorSet = '#99ff33'
+                                }
+                                else if(temp < 175){
+                                    colorSet = '#ffff00'
+                                }
+                                else if(temp < 300){
+                                    colorSet = '#ff6600'
+                                }
+                                else{
+                                    colorSet = '#ff0000'
+                                };
+                            }
+                            break;
+                        case 'P2':
+                            temp =  Math.round((dane[j]['value']/20)*100);
+                            wyswietl.push("  &#8758; "+ dictDane[key] + temp + '% normy');
+                            if (mapa == 'P2'){
+                                if (temp < 50) {
+                                    colorSet = '#00ff00'
+                                }
+                                else if(temp < 100){
+                                    colorSet = '#99ff33'
+                                }
+                                else if(temp < 175){
+                                    colorSet = '#ffff00'
+                                }
+                                else if(temp < 300){
+                                    colorSet = '#ff6600'
+                                }
+                                else{
+                                    colorSet = '#ff0000'
+                                };
+                            }
+                            break;
+
+                        case 'temperature':
+                            temp =  Math.round(dane[j]['value']);
+                            wyswietl.push('&#9728; '+dictDane[key]+ temp +"&#176;C");
+                            if (mapa == 'temperature'){
+                                if (temp < -20){
+                                    colorSet = '#0000cc'
+                                }
+                                else if (temp < -10){
+                                    colorSet = '#3366ff'
+                                }
+                                else if (temp < 0){
+                                    colorSet = '#ccccff'
+                                }
+                                else if (temp < 10){
+                                    colorSet = '#ccff99'
+                                }
+                                else if(temp < 20){
+                                    colorSet = '#66ff33'
+                                }
+                                else if(temp < 30){
+                                    colorSet = '#ccff33'
+                                }
+                                else if(temp < 40){
+                                    colorSet = '#ffcc00'
+                                }
+                                else{
+                                    colorSet = '#ff9900'
+                                };
+                            };
+                            break;
+                        case 'humidity':
+                            temp =  Math.round(dane[j]['value']);
+                            wyswietl.push('&#8779; '+dictDane[key] + temp + '%');
+                            if (mapa == 'humidity'){
+                                colorSet = "#333333"
+                            }
+                            break;
+                        case 'pressure':
+                            temp = Math.round(dane[j]['value']/10)/10;
+                            wyswietl.push('&#9732; '+dictDane[key] + temp + 'hPa');
+                            if (mapa == 'pressure'){
+                                colorSet = "#aa00ff"
+                            }
+                        default:
+                            break;
+                    };
                 };
             };
         }
         else{
             var longhis = czuj[i]['location']['longitude'];
             var lathis = czuj[i]['location']['latitude'];
-            let dane = czuj[i]['sensordatavalues']
-            let dictDane = {'P1':'Smog PM10: ','P2':'Smog PM2,5: ','temperature':'Temperatura: ','humidity':'Wilogtość: ','pressure':'Ciśnienie: '};
             wyswietl = []
+            colorSet = '#00000000'
             for (var j = 0; j < dane.length; j++){
                 if (dane[j]['value_type'] in dictDane){
                     var key = dane[j]['value_type'];
-                    wyswietl.push(dictDane[key] + dane[j]['value'])
+                    switch(key)
+                    {
+                        case 'P1':
+                            temp = Math.round((dane[j]['value']/50)*100)
+                            wyswietl.push("&#8759; "+dictDane[key] + temp + '% normy');
+                            if (mapa == "P1"){
+                                if (temp < 50) {
+                                    colorSet = '#00ff00'
+                                }
+                                else if(temp < 100){
+                                    colorSet = '#99ff33'
+                                }
+                                else if(temp < 175){
+                                    colorSet = '#ffff00'
+                                }
+                                else if(temp < 300){
+                                    colorSet = '#ff6600'
+                                }
+                                else{
+                                    colorSet = '#ff0000'
+                                };
+                            };
+                            break;
+                        case 'P2':
+                            temp =  Math.round((dane[j]['value']/20)*100);
+                            wyswietl.push("&#8758; "+ dictDane[key] + temp + '% normy');
+                            if (mapa == "P2"){
+                                if (temp < 50) {
+                                    colorSet = '#00ff00'
+                                }
+                                else if(temp < 100){
+                                    colorSet = '#99ff33'
+                                }
+                                else if(temp < 175){
+                                    colorSet = '#ffff00'
+                                }
+                                else if(temp < 300){
+                                    colorSet = '#ff6600'
+                                }
+                                else{
+                                    colorSet = '#ff0000'
+                                };
+                            }
+                            break;
+
+                        case 'temperature':
+                            temp =  Math.round(dane[j]['value']);
+                            wyswietl.push('&#9728; '+dictDane[key]+ temp +"&#176;C");
+                            if (mapa == "temperature"){
+                                if (temp < -20){
+                                    colorSet = '#0000cc'
+                                }
+                                else if (temp < -10){
+                                    colorSet = '#3366ff'
+                                }
+                                else if (temp < 0){
+                                    colorSet = '#ccccff'
+                                }
+                                else if (temp < 10){
+                                    colorSet = '#ccff99'
+                                }
+                                else if(temp < 20){
+                                    colorSet = '#66ff33'
+                                }
+                                else if(temp < 30){
+                                    colorSet = '#ccff33'
+                                }
+                                else if(temp < 40){
+                                    colorSet = '#ffcc00'
+                                }
+                                else{
+                                    colorSet = '#ff9900'
+                                };
+                            }
+                            break;
+                        case 'humidity':
+                            temp =  Math.round(dane[j]['value']);
+                            wyswietl.push('&#8779; '+dictDane[key] + temp + '%');
+                            if (mapa == "humidity"){
+                                colorSet = "#33ffff"
+                            }
+                            break;
+                        case 'pressure':
+                            temp = Math.round(dane[j]['value']/10)/10;
+                            wyswietl.push('&#9732; '+dictDane[key] + temp + 'hPa');
+                            if (mapa == 'pressure'){
+                                colorSet = "#aa00ff"
+                            }
+                        default:
+                            break;
+                    };
                 };
             };
-        }
+        };
+        if (colorSet == '#00000000'){
+            continue;
+        } 
         var punkt = "<p class='marker'>"
         for (var k = 0; k < wyswietl.length; k++){
             punkt = punkt +" "+ wyswietl[k] + "<br>"
         }
         punkt = punkt + "</p>"
-        L.marker([latitude, longitude])
-        .bindPopup(punkt)
-        .addTo(mymap);  
-    }   
-  
+
+        circle = L.circle([latitude, longitude], 80,{
+            color: colorSet,
+            fillColor: colorSet,
+            fillOpacity: 0.1,
+        }).bindPopup(punkt)
+        .on('mousemove', function(e){
+            e.target.setRadius(120)
+        })
+        .on('mouseout', function(e){
+            e.target.setRadius(80)
+        });
+        grupaX.addLayer(circle)
+    }
+    grupaX.addTo(mymap)
 };
 
-drawmarker(czujniki)
+drawmarker(czujniki, "P1")
+
+function mapChange(mapIde){
+    window.grupaX.remove()
+    drawmarker(czujniki, mapIde)
+}
 
 // myRequest.onload = function(){
 //     let earthquakes = JSON.parse(myRequest.responseText);
@@ -170,14 +352,10 @@ drawmarker(czujniki)
 // }
 // myRequest.send()
 
-
 // Część nieistotna, jest to skopiowany kod z innych zajęć, można usunąć/zmienić
 
-L.marker([49.780145, 22.786583]).addTo(mymap)
-    .bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();
 
-L.marker([49.781264, 22.835083], {icon: myIcon}).addTo(mymap)
-    .bindPopup("<b>Hello world!</b><br />I am a popup.").openPopup();
+
 L.circle([49.770622, 22.752686], 30, {
     color: '#cc00cc',
     fillColor: "#FF00FF",
@@ -195,19 +373,6 @@ L.polygon([
     [51.503, -0.06],
     [51.51, -0.047]
 ]).addTo(mymap).bindPopup("I am a polygon.");
-
-
-
-var popup = L.popup();
-
-function onMapClick(e) {
-    popup
-        .setLatLng(e.latlng)
-        .setContent("You clicked the map at " + e.latlng.toString())
-        .openOn(mymap);
-}
-
-mymap.on('click', onMapClick);
 
 let myRequest = new XMLHttpRequest();
 myRequest.open('GET', 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson')
