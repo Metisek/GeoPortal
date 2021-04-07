@@ -192,15 +192,52 @@ function drawmarker(czuj, mapa){
                             temp =  Math.round(dane[j]['value']);
                             wyswietl.push('&#8779; '+dictDane[key] + temp + '%');
                             if (mapa == 'humidity'){
-                                colorSet = "#333333"
+                                if (temp < 20){
+                                    colorSet = '#ffffcc'
+                                }
+                                else if (temp < 35){
+                                    colorSet = '#ccccff'
+                                }
+                                else if (temp < 50){
+                                    colorSet = '#6699FF'
+                                }
+                                else if (temp < 70){
+                                    colorSet = '#0066ff'
+                                }
+                                else if (temp < 85){
+                                    colorSet = '#0033cc'
+                                }
+                                else{
+                                    colorSet = '#000099'
+                                };
                             }
                             break;
                         case 'pressure':
                             temp = Math.round(dane[j]['value']/10)/10;
                             wyswietl.push('&#9732; '+dictDane[key] + temp + 'hPa');
                             if (mapa == 'pressure'){
-                                colorSet = "#aa00ff"
-                            }
+                                if(temp < 970){
+                                    colorSet = '#0000ff'
+                                }
+                                else if(temp < 980){
+                                    colorSet = '#0066ff'
+                                }
+                                else if(temp < 995){
+                                    colorSet = '#66ccff'   
+                                }
+                                else if(temp < 1005){
+                                    colorSet = '#ffffff'
+                                }
+                                else if(temp < 1015){
+                                    colorSet = '#ff9999'
+                                }
+                                else if (temp < 1025){
+                                    colorSet = '#ff5050'
+                                }
+                                else{
+                                    colorSet = '#ff0000'
+                                };
+                            };
                         default:
                             break;
                     };
@@ -294,14 +331,51 @@ function drawmarker(czuj, mapa){
                             temp =  Math.round(dane[j]['value']);
                             wyswietl.push('&#8779; '+dictDane[key] + temp + '%');
                             if (mapa == "humidity"){
-                                colorSet = "#33ffff"
-                            }
+                                if (temp < 20){
+                                    colorSet = '#ffffcc'
+                                }
+                                else if (temp < 35){
+                                    colorSet = '#ccccff'
+                                }
+                                else if (temp < 50){
+                                    colorSet = '#6699FF'
+                                }
+                                else if (temp < 70){
+                                    colorSet = '#0066ff'
+                                }
+                                else if (temp < 85){
+                                    colorSet = '#0033cc'
+                                }
+                                else{
+                                    colorSet = '#000099'
+                                };
+                            };
                             break;
                         case 'pressure':
                             temp = Math.round(dane[j]['value']/10)/10;
                             wyswietl.push('&#9732; '+dictDane[key] + temp + 'hPa');
                             if (mapa == 'pressure'){
-                                colorSet = "#aa00ff"
+                                if(temp < 970){
+                                    colorSet = '#0000ff'
+                                }
+                                else if(temp < 980){
+                                    colorSet = '#0066ff'
+                                }
+                                else if(temp < 995){
+                                    colorSet = '#66ccff'   
+                                }
+                                else if(temp < 1005){
+                                    colorSet = '#ffffff'
+                                }
+                                else if(temp < 1015){
+                                    colorSet = '#ff9999'
+                                }
+                                else if (temp < 1025){
+                                    colorSet = '#ff5050'
+                                }
+                                else{
+                                    colorSet = '#ff0000'
+                                };
                             }
                         default:
                             break;
