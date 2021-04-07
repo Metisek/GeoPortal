@@ -79,6 +79,7 @@ div.powiadomienie{
 
 #menuHam{
     color: white;
+    transition: 0.3s;
 }
 
 /* Formatowanie tekstu głównych kategorii panelu, po ich kliknięciu pojawia się kontener z ich "dzieckiem" */
@@ -102,9 +103,9 @@ div.powiadomienie{
 #TempInput, #PM25Input, #PM10Input, #HumidInput, #PressureInput{
     height: 0;
     position: relative;
-    width: 200px;
+    width: 240px;
     z-index: 6;
-    left: 10px;
+    left: 0px;
     overflow-y: hidden;
 }
 

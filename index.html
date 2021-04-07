@@ -8,14 +8,15 @@
 
     <!-- Dodanie danych, skryptów oraz CSS'ów z Internetu  -->
 
-    <script type="text/javascript" src="http://api.luftdaten.info/static/v1/data.json"></script>
+    <script type="text/javascript" src="https://api.luftdaten.info/static/v1/data.json"></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
     
     <!-- Dodanie danych oraz CSS'ów lokalnych -->
 
     <link href="style.css" rel="stylesheet">
-    <script src="przemyslGranice.geojson" id="przemysl"></script>
+    <script src="podzialMiast/przemyslGranice.geojson" id="przemysl"></script>
+    <script src="podzialMiast/Podkarpackie.geojson" id="przemysl"></script>
 
   </head>
   
@@ -56,27 +57,27 @@
         <a href="javascript:void(0)" onclick='checkChild("TempInput")' class="podmenu">Zakres temperatur</a>
         <div id="TempInput">
           <!-- W każdym z tych 5 wpisów nie dodałem jeszcze funkcji JS'a, która aktualizuje dane po wykryciu zmiany w danej kategorii -->
-          <p>Od: <input type="number" id="tempLow"> Do: <input type="number" id="tempHigh"></p>
+          <p><input type="radio" name="tempRadio" id="tempID">Od: <input type="number" id="tempLow"> Do: <input type="number" id="tempHigh"></p>
         </div>
 
         <a href="javascript:void(0)" onclick='checkChild("PM25Input")' class="podmenu">Zakres pyłków PM 2,5</a>
         <div id="PM25Input">
-          <p>Od: <input type="number" id="PM25Low"> Do: <input type="number" id="PM25High"></p>
+          <p><input type="radio" name="PM25Radio" id="PM25ID">Od: <input type="number" id="PM25Low"> Do: <input type="number" id="PM25High"></p>
         </div>
 
         <a href="javascript:void(0)" onclick='checkChild("PM10Input")' class="podmenu">Zakres pyłków PM 10</a>
         <div id="PM10Input">
-          <p>Od: <input type="number" id="PM10Low"> Do: <input type="number" id="PM10High"></p>
+          <p><input type="radio" name="PM10Radio" id="PM10ID">Od: <input type="number" id="PM10Low"> Do: <input type="number" id="PM10High"></p>
         </div>
         
         <a href="javascript:void(0)" onclick='checkChild("HumidInput")' class="podmenu">Zakres wilgotności powietrza</a>
         <div id="HumidInput">
-          <p>Od: <input type="number" id="HumidLow"> Do: <input type="number" id="HumidHigh"></p>
+          <p><input type="radio" name="HumidRadio" id="HumidID">Od: <input type="number" id="HumidLow"> Do: <input type="number" id="HumidHigh"></p>
         </div>
 
         <a href="javascript:void(0)" onclick='checkChild("PressureInput")' class="podmenu">Zakres ciśnienia powietrza</a>
         <div id="PressureInput">
-          <p>Od: <input type="number" id="PressureLow"> Do: <input type="number" id="PressureHigh"></p>
+          <p><input type="radio" name="PressureRadio" id="Pressure10ID">Od: <input type="number" id="PressureLow"> Do: <input type="number" id="PressureHigh"></p>
         </div>
 
       </div>

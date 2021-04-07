@@ -1,10 +1,11 @@
 // Ta sekcja odczytuje dane JSON z luftdafen, a następnie przypisuje je do zmiennej "czujniki"
 
-var luftdafen = 'http://api.luftdaten.info/static/v1/data.json';
+var luftdafen = 'https://api.luftdaten.info/static/v1/data.json';
 var xmlHttp = new XMLHttpRequest();
 xmlHttp.open( "GET", luftdafen, false );
 xmlHttp.send(null);
-let czujniki = xmlHttp.responseText;
+let czujniki = JSON.parse(xmlHttp.responseText);
+console.log(czujniki)
 
 // Sekcja określa granice mapy
 let sw = L.latLng(49.69600468606782, 22.40746406532194);
@@ -71,8 +72,7 @@ function checkChild(identity){
     };
 };
 
-
-// Zmiana układu topograficznego
+// Zmiana układu topograficznego (tryb ciemny)
 
 function darkMode(value){
     if(value == 0){
@@ -92,6 +92,54 @@ function darkMode(value){
 };
 
 darkMode(0)
+
+L.geoJSON(przemysl, {
+    style: function(feature) {
+        return {color: '#99ff99',
+        fillColor: '#ffffcc',
+        fillOpacity: 0.1};
+    }
+}).addTo(mymap);
+
+L.geoJSON(podkarpacie, {
+    style: function(feature) {
+        return {color: '#ff9955',
+        fillColor: '#ff00cc',
+        fillOpacity: 0.01};
+    }
+}).addTo(mymap);
+
+//
+
+// Sekcja Mateusza
+
+//
+
+function drawmarker(czuj){
+    for (var i = 0; i < 5; i++){
+        console.log(czujniki[i])
+        // var longitude = czuj[i]['location']['longitude'];
+        // var latitude =  czuj[i]['location']['latitude'];
+        // L.marker([latitude, longitude])
+        // .bindPopup('hello')
+        // .addTo(map);  
+    }   
+  
+};
+
+drawmarker(czujniki)
+
+myRequest.onload = function(){
+    let earthquakes = JSON.parse(myRequest.responseText);
+    window.earthquakes = L.geoJSON(earthquakes, {
+        onEachFeature: function(feature, layer){
+            layer.bindPopup('<p><b>Earthquake location: </b>'+ feature.properties.place +
+            '</p><p><b> Magnitude: </b>' + feature.properties.mag+'</p>')
+        }
+    }).addTo(mymap) 
+}
+myRequest.send()
+
 
 // Część nieistotna, jest to skopiowany kod z innych zajęć, można usunąć/zmienić
 
@@ -118,13 +166,7 @@ L.polygon([
     [51.51, -0.047]
 ]).addTo(mymap).bindPopup("I am a polygon.");
 
-L.geoJSON(przemysl, {
-    style: function(feature) {
-        return {color: '#99ff99',
-        fillColor: '#ffffcc',
-        fillOpacity: 0.1};
-    }
-}).addTo(mymap);
+
 
 var popup = L.popup();
 
