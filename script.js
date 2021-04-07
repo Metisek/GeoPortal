@@ -94,7 +94,7 @@ darkMode(0)
 
 L.geoJSON(przemysl, {
     style: function(feature) {
-        return {color: '#99ff99',
+        return {color: '#00000000',
         fillColor: '#ffffcc',
         fillOpacity: 0.1};
     }
@@ -117,9 +117,22 @@ L.geoJSON(podkarpacie, {
 function drawmarker(czuj){
     for (var i = 0; i < czuj.length; i++){
         var longitude = czuj[i]['location']['longitude'];
-        var latitude =  czuj[i]['location']['latitude']
+        var latitude =  czuj[i]['location']['latitude'];
+        let dane = czuj[i]['sensordatavalues']
+        let dictDane = {'P1':'Smog PM10:','P2':'Smog PM2,5:','temperature':'Temperatura: ','humidity':'Wilogtość: ','pressure':'Ciśnienie: '};
+        let wyswietl = []
+        for (var j = 0; j < dane.length; j++){
+            if (dane[j]['value_type'] in dictDane){
+                var key = dane[j]['value_type'];
+                wyswietl.push(dictDane[key] + dane[j]['value'])
+            };
+        };
+        var punkt = ""
+        for (var k = 0; k < wyswietl.length; k++){
+            punkt = punkt +" " + wyswietl[k] + "<br>"
+        }
         L.marker([latitude, longitude])
-        .bindPopup('hello')
+        .bindPopup(punkt)
         .addTo(mymap);  
     }   
   
