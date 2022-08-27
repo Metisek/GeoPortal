@@ -1,2 +1,2 @@
 # GeoPortal
-Pliki geoportalu grupy 1
+Simple site created after completeing IoT bootcamp organised by SmartFactor
